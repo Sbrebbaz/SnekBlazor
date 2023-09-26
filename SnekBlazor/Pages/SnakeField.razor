@@ -1,0 +1,62 @@
+﻿<table @onkeydown="OnKeyDown"
+	   tabindex="0"
+@ref="myDiv">
+	<tbody>
+		@for (int i = 0; i < Size; i++)
+		{
+			<tr>
+				@for (int j = 0; j < Size; j++)
+				{
+					if (PlayerPosition.X == j && PlayerPosition.Y == i)
+					{
+						<td style="background-color: red"></td>
+					}
+					else
+					{
+						<td></td>
+					}
+				}
+			</tr>
+		}
+	</tbody>
+</table>
+
+@code {
+
+	[Parameter]
+	public int Size { get; set; } = 10;
+
+	[Parameter]
+	public Point PlayerPosition { get; set; }
+
+	[Parameter]
+	public EventCallback<MovementDirection> OnMovementChanged { get; set; }
+
+	public void OnKeyDown(KeyboardEventArgs e)
+	{
+		if (e.Key == "w" || e.Key == "ArrowUp")
+		{
+			OnMovementChanged.InvokeAsync(MovementDirection.Up);
+		}
+		if (e.Key == "a" || e.Key == "ArrowLeft")
+		{
+			OnMovementChanged.InvokeAsync(MovementDirection.Left);
+		}
+		if (e.Key == "s" || e.Key == "ArrowDown")
+		{
+			OnMovementChanged.InvokeAsync(MovementDirection.Down);
+		}
+		if (e.Key == "d" || e.Key == "ArrowRight")
+		{
+			OnMovementChanged.InvokeAsync(MovementDirection.Right);
+		}
+	}
+
+	protected ElementReference myDiv;  // set by the @ref attribute
+
+	protected async override Task OnAfterRenderAsync(bool firstRender)
+	{
+		await myDiv.FocusAsync();
+	}
+
+}
