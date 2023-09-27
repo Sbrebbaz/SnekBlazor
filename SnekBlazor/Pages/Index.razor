@@ -1,7 +1,31 @@
 ﻿@page "/"
 
 <PageTitle>Index</PageTitle>
+<div>
+	<h1>SNEK!</h1>
 
-<h1>SNEK!</h1>
+	<SnakeField Size="10"
+				FoodPosition="_FoodPosition"
+				PlayerPosition="_PlayerPosition"
+				OnMovementChanged="DirectionChanged"></SnakeField>
 
-<SnakeField Size="10" PlayerPosition="PlayerPosition" OnMovementChanged="DirectionChanged"></SnakeField>
+	@* <button @onclick="IncreaseSnakeLenght">INCREASE SNAKE LENGHT</button> *@
+
+	<p>SCORE: @_PlayerPosition.Count</p>
+
+	@if (_GameOver)
+	{
+		<h2 class="red">GAMEOVER!</h2>
+	}
+
+	@if (_Win)
+	{
+		<h2 class="green">YOU WIN!</h2>
+	}
+
+	@if (_GameOver || _Win)
+	{
+		<button @onclick="ResetGame">Restart!</button>
+	}
+
+</div>

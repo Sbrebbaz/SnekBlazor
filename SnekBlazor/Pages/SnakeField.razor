@@ -7,9 +7,14 @@
 			<tr>
 				@for (int j = 0; j < Size; j++)
 				{
-					if (PlayerPosition.X == j && PlayerPosition.Y == i)
+					
+					if (PlayerPosition.Any(p => p.X == j && p.Y == i))
 					{
 						<td style="background-color: red"></td>
+					}
+					else if (FoodPosition.X == j && FoodPosition.Y == i)
+					{
+						<td style="background-color: yellow"></td>
 					}
 					else
 					{
@@ -27,7 +32,10 @@
 	public int Size { get; set; } = 10;
 
 	[Parameter]
-	public Point PlayerPosition { get; set; }
+	public IEnumerable<Point> PlayerPosition { get; set; } = new List<Point>();
+
+	[Parameter]
+	public Point FoodPosition { get; set; } = new Point(-1, -1);
 
 	[Parameter]
 	public EventCallback<MovementDirection> OnMovementChanged { get; set; }

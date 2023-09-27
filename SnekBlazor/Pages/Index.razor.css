@@ -1,2 +1,37 @@
 ﻿body {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Comic Sans MS";
+}
+
+h2 {
+    text-align: center;
+    font-family: "Comic Sans MS";
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+p {
+    text-align: center;
+    font-family: "Comic Sans MS";
+}
+
+button {
+    width: 20%;
+    height: 90px;
+    font-family: "Comic Sans MS";
+    font-size: 32px;
+    position: relative;
+    left: 40%;
+    margin: 0 auto;
 }
